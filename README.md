@@ -38,7 +38,7 @@ Before you begin, ensure you have met the following requirements:
 ### Installation
 1. Clone the repository:
     ```sh
-    git clone https://github.com/Dhiv123/inkwell.git
+    git clone https://github.com/your_username/inkwell.git
     ```
     Replace `your-username` with your GitHub username.
     
