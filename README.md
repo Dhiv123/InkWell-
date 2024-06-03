@@ -39,8 +39,7 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
     ```sh
     git clone https://github.com/your_username/inkwell.git
-    ```
-    Replace `your-username` with your GitHub username.
+    ``
     
 2. Navigate to the project directory:
     ```sh
