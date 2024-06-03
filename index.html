@@ -1,0 +1,347 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Writing Workshop</title>
+    <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/css/shepherd.css" />
+
+</head>
+
+<body>
+    <nav>
+<div class="logo-container">
+        <img src="image12.png" alt="InkWell Logo" class="logo">
+        <div class="logo-text">InkWell</div>
+    </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="brainstorming.html">Brainstorming</a></li>
+            <li><a href="drafting.html">Drafting</a></li>
+	    <li><a href="profile.html">Profile</a></li>
+	    <li><a href="community.html">Community</a></li>
+<li><a href="help.html">Help</a></li>
+        </ul>
+<div class="profile-menu-container">
+<div class="profile-menu">
+            <button class="profile-button">
+                <img src="image5.png" alt="Profile">
+<span id="profile-name"></span>
+            </button>
+            <div class="profile-info" id="profile-info">
+                <a href="login.html" id="logout">Logout</a>
+            </div>
+        </div>
+</div>
+    </nav>
+
+    <main>
+
+
+     <script src="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/js/shepherd.min.js"></script>
+
+<div class="home-background" style="background-image: url('image8.jpg');">
+
+    <div class="slideshow-container">
+        <div class="mySlides">
+            <q>There's no greater agony than bearing an untold story inside you.</q>
+            <p class="author">- Maya Angelou</p>
+        </div>
+        <div class="mySlides">
+            <q>You may not write well every day, but you can always edit a bad page. You can't edit a blank page.</q>
+            <p class="author">- Jodi Picoult</p>
+        </div>
+        <div class="mySlides">
+            <q>If there's a book that you want to read, but it hasn't been written yet, then you must write it.</q>
+            <p class="author">- Toni Morrison</p>
+        </div>
+        <div class="mySlides">
+            <q>Stay faithful to the stories in your head.</q>
+            <p class="author">- Paula Hawkins</p>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+</div>
+
+<br>
+        <p>Begin your journey to becoming a better writer...</p>
+       
+<br>
+<!-- About section -->
+    <section id="about" class="section-class">
+ <hr class="separator">
+        <h2>About InkWell</h2>
+<br>
+        <img src="image11.png" alt="InkWell" class="rounded-logo">
+        <p>
+<br>
+            <i>InkWell is a platform where creative minds can come together to <br> brainstorm, draft, and collaborate on writing projects. 
+          <br> <br> Users can jot down their ideas in the brainstorming page, <br> refine them into drafts in the drafting page, set deadlines, 
+            and <br> share their work with the community for feedback and collaboration.
+      </i>  </p>
+ <hr class="separator">
+    </section>
+
+    <!-- Features section -->
+    <section id="features" class="section-class">
+        <h2>Features</h2>
+        
+          <i><b>Brainstorming:</b> Generate and refine creative ideas.</i>
+<br>
+<br>
+            <i><b>Drafting: </b>Write, edit, and save drafts.</i>
+<br>
+<br>
+            <i><b>Deadline Setting:</b> Keep track of project timelines.</i>
+<br>
+<br>
+           <i><b>Community Sharing:</b> Share drafts for feedback and collaboration.</i>
+<br>
+<br>
+       
+ <hr class="separator">
+    </section>
+
+<section id="testimonials" class="section">
+    <div class="container">
+        <h2 style="color: #8a2be2;">Testimonials</h2>
+        <div class="testimonial">
+            <div class="testimonial-content">
+                <p>"InkWell helped me unleash my creativity and connect with other writers. It's an amazing platform!"</p>
+                <cite>- John Doe</cite>
+            </div>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-content">
+                <p>"I've received valuable feedback and encouragement from the InkWell community. Highly recommended!"</p>
+                <cite>- Jane Smith</cite>
+            </div>
+        </div>
+       
+    </div>
+ <hr class="separator">
+
+</section>
+    </main>
+    <script src="script.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const profileDropdown = document.getElementById('profile-dropdown');
+            const profileButton = document.querySelector('.profile-button');
+            const profileName = document.getElementById('profile-name');
+            const logout = document.getElementById('logout');
+
+            if (currentUser) {
+                profileName.textContent = currentUser.name;
+            }
+
+            profileButton.addEventListener('click', function() {
+                profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (!event.target.matches('.profile-button') && !event.target.matches('.profile-button img')) {
+                    profileDropdown.style.display = 'none';
+                }
+            });
+
+            logout.addEventListener('click', function() {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+}
+</script>
+<script src="shepherd.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const saveDraftButton = document.getElementById('save-draft');
+    const deleteDraftButton = document.getElementById('delete-draft');
+    const draftList = document.getElementById('draft-list');
+    const loadDraftButton = document.getElementById('load-draft');
+    const newDraftButton = document.getElementById('new-draft');
+    const draftInput = document.getElementById('draft-input');
+    const draftPrefix = 'draft_';
+    const postDraftButton = document.getElementById('post-draft');
+
+    if (saveDraftButton && draftInput) {
+        saveDraftButton.addEventListener('click', function() {
+            const text = draftInput.value;
+            if (!text) {
+                alert("Please enter some text to save.");
+                return;
+            }
+
+            const filename = prompt("Enter the filename:", "draft.txt");
+            if (!filename) {
+                alert("Filename cannot be empty.");
+                return;
+            }
+
+            saveDraft(filename, text);
+            updateDraftList();
+        });
+    }
+
+    if (deleteDraftButton && draftList) {
+        deleteDraftButton.addEventListener('click', function() {
+            const selectedDraft = draftList.value;
+            if (selectedDraft) {
+                const confirmation = confirm("Are you sure you want to delete this draft?");
+                if (confirmation) {
+                    deleteDraft(selectedDraft);
+                    updateDraftList();
+                    draftInput.value = ''; // Clear the input field
+                }
+            } else {
+                alert("Please select a draft to delete.");
+            }
+        });
+    }
+
+    if (loadDraftButton && draftList) {
+        loadDraftButton.addEventListener('click', function() {
+            const selectedDraft = draftList.value;
+            if (selectedDraft) {
+                loadDraft(selectedDraft);
+            } else {
+                alert("Please select a draft to load.");
+            }
+        });
+    }
+
+    if (newDraftButton) {
+        newDraftButton.addEventListener('click', function() {
+            const currentText = draftInput.value.trim();
+            if (currentText) {
+                const filename = prompt("Enter the filename for the current draft:", "draft.txt");
+                if (filename) {
+                    saveDraft(filename, currentText);
+                    updateDraftList();
+                    draftInput.value = ''; // Clear the input field for a new draft
+                }
+            } else {
+                draftInput.value = ''; // Clear the input field for a new draft if it's already empty
+            }
+        });
+    }
+
+    if (postDraftButton) {
+        postDraftButton.addEventListener('click', function() {
+            const text = draftInput.value;
+            if (!text) {
+                alert("Please enter some text to post.");
+                return;
+            }
+
+            const filename = prompt("Enter the filename:", "draft.txt");
+            if (!filename) {
+                alert("Filename cannot be empty.");
+                return;
+            }
+
+            saveDraft(filename, text);
+            postDraftToCommunity(filename);
+            updateDraftList();
+        });
+    }
+
+    function saveDraft(filename, content) {
+        localStorage.setItem(draftPrefix + filename, content);
+    }
+
+    function loadDraft(filename) {
+        const content = localStorage.getItem(draftPrefix + filename);
+        if (content !== null) {
+            draftInput.value = content;
+        } else {
+            alert("Draft not found.");
+        }
+    }
+
+    function deleteDraft(filename) {
+        localStorage.removeItem(draftPrefix + filename);
+    }
+
+    function updateDraftList() {
+        draftList.innerHTML = '';
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            // Only include drafts and exclude sensitive information
+            if (key.startsWith(draftPrefix)) {
+                const option = document.createElement('option');
+                option.value = key.substring(draftPrefix.length); // Remove prefix for display
+                option.textContent = key.substring(draftPrefix.length); // Remove prefix for display
+                draftList.appendChild(option);
+            }
+        }
+    }
+
+    function postDraftToCommunity(filename) {
+        const content = localStorage.getItem(draftPrefix + filename);
+        if (!content) {
+            alert("Draft content not found.");
+            return;
+        }
+
+        const posts = JSON.parse(localStorage.getItem('communityPosts')) || [];
+        posts.push({ filename, content, date: new Date().toLocaleString() });
+        localStorage.setItem('communityPosts', JSON.stringify(posts));
+        alert("Draft posted to community!");
+        window.location.href = 'community.html';
+    }
+
+    // Update draft list on page load
+    updateDraftList();
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/js/shepherd.min.js">
+</script>
+
+
+</body>
+</html>
+

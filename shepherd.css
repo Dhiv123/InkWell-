@@ -1,0 +1,43 @@
+/* Shepherd modal styles */
+.shepherd-modal {
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
+    border-radius: 10px;
+    padding: 20px;
+    color: #ffffff; /* White text color */
+}
+
+/* Shepherd content styles */
+.shepherd-content {
+    max-width: 400px;
+}
+
+/* Shepherd footer styles */
+.shepherd-footer button {
+    background-color: #007bff; /* Dark blue */
+    color: #ffffff; /* White text color */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.shepherd-footer button:hover {
+    background-color: #0056b3; /* Dark blue on hover */
+}
+
+/* Shepherd progress bar styles */
+.shepherd-progress-container {
+    margin-top: 20px;
+}
+
+.shepherd-progress-bar {
+    background-color: #007bff; /* Dark blue */
+    height: 10px;
+    border-radius: 5px;
+}
+
+/* Shepherd arrow styles */
+.shepherd-arrow.shepherd-open {
+    border-top-color: #007bff; /* Dark blue arrow */
+}

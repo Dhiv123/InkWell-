@@ -1,0 +1,366 @@
+body {
+    font-family: 'Georgia', serif; /* Use Georgia font for the entire body */
+    background-color: #000; /* Dark black background */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 1.4em; /* Increase the overall font size */
+}
+
+/* Home page background */
+.home-background {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Slides */
+.mySlides {
+    display: none;
+    text-align: center;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    user-select: none;
+}
+
+.next {
+    right: 0;
+}
+
+/* Dots/bullets/indicators */
+.dot-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+nav {
+    background-color: rgba(128, 128, 128, 0.5); /* Opaque grey background */
+    padding: 1em 0; /* Increase padding for a bigger nav bar */
+    text-align: center;
+    justify-content: space-between;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0; 
+     justify-content: flex-end; 
+}
+
+
+nav ul li {
+    display: inline;
+    margin-right: 70px; 
+margin-left:20px;
+
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em; /* Increase font size for nav items */
+    transition: color 0.3s;
+    font-family: 'Kaushan Script'; 
+    display: center; 
+    margin: 0 10px;
+}
+
+
+nav ul li a:hover {
+    color: #ccc;
+}
+
+header {
+    text-align: center;
+    padding: 1em 0;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+text-align: center;
+color: white;
+}
+
+.split-container {
+    display: flex;
+    height: calc(100vh - 100px); /* Adjust height to account for header */
+}
+
+.ideas-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    padding: 1em;
+    font-size: 1em;
+}
+   top: 0;
+
+.divider {
+    width: 5px;
+    background-color: rgba(0, 0, 0, 0.5);; 
+    cursor: ew-resize; 
+}
+
+.editor-container {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.5);; 
+    padding: 1em;
+    color:white;
+}
+
+.idea-input {
+    width: 100%;
+    height: calc(100% - 50px); 
+    margin-bottom: 1em;
+    resize: none; 
+color: white;
+}
+
+button {
+    width: 30%;
+    padding: 1em;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.7em
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.home-image {
+    float: left;
+    width: 30%;
+    height: auto;
+    margin-right: 1em;
+}
+
+main {
+    padding: 2em;
+}
+textarea {
+background: transparent;
+    width: 100%;
+    height: calc(100% - 50px); /* Adjust height to leave space for button */
+    margin-bottom: 1em;
+    resize: none; /* Disable textarea resizing */
+font-size: 18px;
+}
+
+
+.rounded-logo {
+    border-radius: 50%;
+    width: 150px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Center the image */
+    margin: 20px auto; /* Adjust margin as needed */
+}
+
+.separator {
+    border: none;
+    border-top: 1px solid #ccc; /* Adjust color and thickness as needed */
+    margin: 20px 0; /* Adjust margin as needed */
+}
+
+h2 {
+    color: #9370DB; /* Medium purple color */
+text-align:center;
+}
+section {
+    text-align: center; /* Center-align the content of all sections */
+}
+
+.section-class {
+    text-align: center; 
+}
+
+#testimonials {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.testimonial {
+    margin: 20px;
+    display: inline-block; /* Display testimonials side by side */
+    vertical-align: top; /* Align testimonials to the top */
+    width: calc(50% - 40px); /* Set width for each testimonial */
+    max-width: 400px; /* Set maximum width for each testimonial */
+}
+
+.testimonial-content {
+    background-color: rgba(128, 128, 128, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-content p {
+    font-style: italic;
+}
+
+.testimonial-content cite {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Add this CSS to style.css */
+
+.profile-info {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Opaque background color */
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif; /* Use Arial font */
+    color: #fff; /* White text color */
+    z-index: 2;
+}
+
+.profile-menu:hover .profile-info {
+    display: block; /* Display the profile info when hovering over the profile menu */
+}
+
+.profile-info span {
+    display: block;
+    color: white;
+    font-family: 'Kaushan Script', cursive; /* Use Kaushan Script font */
+    font-size: 1em; /* 1em size */
+}
+
+.profile-info a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+}
+
+.profile-info a:hover {
+    text-decoration: underline;
+}
+
+#profile-name {
+    display: none;
+}
+
+.logo-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column; /* Change flex-direction to column */
+    align-items: center; /* Center align items horizontally */
+}
+
+.logo-text {
+    font-size: 0.8em; /* Adjust font size */
+    margin-top: 5px; /* Add some space between logo and text */
+    color: #fff; /* Text color */
+}
+
+
+.logo {
+    width: 50px; /* Adjust size of logo */
+    height: auto;
+}
+
+.profile-menu-container {
+    margin-left: auto;
+    position: relative;
+}
+
+.profile-menu {
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    right: 35px; /* Adjust the distance from the right */
+}
+
+.profile-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px; /* Adjust the padding */
+}
+
+.profile-button img {
+    width: 40px; /* Adjust the size of the image */
+    height: 40px;
+    border-radius: 50%; /* Make it round */
+}
+
+
+
+.profile-button:hover + .profile-info {
+    display: block;
+}
+
+.shepherd-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.shepherd-step.shepherd-step--active + .shepherd-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.shepherd-target-highlight {
+    position: relative;
+    z-index: 1001;
+}

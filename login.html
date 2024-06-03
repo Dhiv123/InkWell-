@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+<link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="login">Login</button>
+        <p>Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+    <script>
+        document.getElementById('login').addEventListener('click', function() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (email && password) {
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(user => user.email === email && user.password === password);
+
+                if (user) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    alert('Login successful!');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Invalid email or password.');
+                }
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
+</body>
+</html>

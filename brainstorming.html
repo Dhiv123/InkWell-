@@ -1,0 +1,214 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainstorming</title>
+    <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/css/shepherd.css" />
+
+</head>
+
+<body>
+<div class="home-background" style="background-image: url('image6.jpg');">
+    <nav>
+<div class="logo-container">
+        <img src="image12.png" alt="InkWell Logo" class="logo">
+        <div class="logo-text">InkWell</div>
+    </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="brainstorming.html">Brainstorming</a></li>
+            <li><a href="drafting.html">Drafting</a></li>
+	    <li><a href="profile.html">Profile</a></li>
+	    <li><a href="community.html">Community</a></li>
+<li><a href="help.html">Help</a></li>
+        </ul>
+<div class="profile-menu-container">
+<div class="profile-menu">
+            <button class="profile-button">
+                <img src="image5.png" alt="Profile">
+<span id="profile-name"></span>
+            </button>
+            <div class="profile-info" id="profile-info">
+                <a href="login.html" id="logout">Logout</a>
+            </div>
+        </div>
+</div>
+    </nav>
+    
+    <div class="split-container">
+        <div id="ideas-tab" class="ideas-tab">
+</div>
+        <div id="ideas-list" class="ideas-list">
+<h3>All Ideas</h3>
+           
+            <div id="ideas-container" class="ideas-container">
+                <!-- Ideas will be displayed here -->
+            </div>
+        </div>
+        <div class="divider" id="divider"></div>
+        <div class="editor-container">
+            <textarea id="idea-input" class="idea-input" placeholder="Enter your idea..." ></textarea>
+            <button id="add-idea">Add Idea</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/js/shepherd.min.js">
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tour = new Shepherd.Tour({
+        defaultStepOptions: {
+            classes: 'shepherd-theme-dark',
+            scrollTo: true,
+	    beforeShowPromise: function() {
+                return new Promise(resolve => {
+                    document.body.insertAdjacentHTML('beforeend', '<div class="shepherd-overlay"></div>');
+                    resolve();
+                });
+            },
+            when: {
+                show: function() {
+                    const target = document.querySelector(this.options.attachTo.element);
+                    target.classList.add('shepherd-target-highlight');
+                    document.querySelector('.shepherd-overlay').style.opacity = '1';
+                },
+                hide: function() {
+                    const target = document.querySelector(this.options.attachTo.element);
+                    if (target) {
+                        target.classList.remove('shepherd-target-highlight');
+                    }
+                    const overlay = document.querySelector('.shepherd-overlay');
+                    if (overlay) {
+                        overlay.remove();
+                    }
+                }
+            }
+        }
+    });
+        
+    tour.addStep({
+        id: 'step5',
+        text: 'This is where you write your ideas.',
+        attachTo: {
+            element: '#idea-input',
+            on: 'top'
+        },
+        buttons: [
+{
+                        text: 'Skip',
+                        action: function() {
+                tour.cancel();
+                document.querySelector('.shepherd-overlay').remove(); // Remove the overlay
+            },
+            classes: 'shepherd-button-secondary'
+        },
+                    {
+                        text: 'Previous',
+                        action: tour.back,
+                        secondary: true
+                    },
+            {
+                text: 'Next',
+                action: tour.next
+            }
+        ]
+    });
+
+	tour.addStep({
+        id: 'step6',
+        text: 'Be sure to click on the Add Idea button to save your ideas in your local storage.',
+        attachTo: {
+            element: '#add-idea',
+            on: 'top'
+        },
+        buttons: [
+{
+                        text: 'Skip',
+                        action: function() {
+                tour.cancel();
+                document.querySelector('.shepherd-overlay').remove(); // Remove the overlay
+            },
+            classes: 'shepherd-button-secondary'
+        },
+                    {
+                        text: 'Previous',
+                        action: tour.back,
+                        secondary: true
+                    },
+            {
+                text: 'Next',
+                action: tour.next
+            }
+        ]
+    });
+
+	tour.addStep({
+        id: 'step7',
+        text: 'This is where your saved ideas appear.If you want to delete a particular idea, just click on the delete button next to the idea to delete it permanently from your local storage.',
+        attachTo: {
+            element: '#ideas-list',
+            on: 'top'
+        },
+        buttons: [
+{
+                        text: 'Skip',
+                        action: function() {
+                tour.cancel();
+                document.querySelector('.shepherd-overlay').remove(); // Remove the overlay
+            },
+            classes: 'shepherd-button-secondary'
+        },
+                    {
+                        text: 'Previous',
+                        action: tour.back,
+                        secondary: true
+                    },
+            {
+                text: 'Next',
+                action: tour.next
+            }
+        ]
+    });
+
+tour.addStep({
+        id: 'step8',
+        text: 'Now, click on Drafting to start writing!! ',
+        attachTo: {
+            element: 'li:nth-child(3)',
+            on: 'top'
+        },
+        buttons: [
+{
+                        text: 'Skip',
+                        action: function() {
+                tour.cancel();
+                document.querySelector('.shepherd-overlay').remove(); // Remove the overlay
+            },
+            classes: 'shepherd-button-secondary'
+        },
+                    {
+                        text: 'Previous',
+                        action: tour.back,
+                        secondary: true
+                    },
+            {
+                text: 'Next',
+                action: function() {
+                    window.location.href = 'drafting.html';
+ }
+            }
+        ]
+    });
+
+
+
+tour.start(); // Start the tour
+    });
+</script>
+</body>
+</html>

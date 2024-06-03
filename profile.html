@@ -1,0 +1,287 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/css/shepherd.css" />
+
+    <style>
+        .container {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8); /* Very opaque black background */
+            padding: 20px;
+            color: #fff; /* Text color */
+            border-radius: 10px;
+        }
+        .deadline {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .deadline button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <img src="image12.png" alt="InkWell Logo" class="logo">
+            <div class="logo-text">InkWell</div>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="brainstorming.html">Brainstorming</a></li>
+            <li><a href="drafting.html">Drafting</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <div class="profile-menu-container">
+            <div class="profile-menu">
+                <button class="profile-button">
+                    <img src="image5.png" alt="Profile">
+                    <span id="profile-name"></span>
+                </button>
+                <div class="profile-info" id="profile-info">
+                    <a href="login.html" id="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="home-background" style="background-image: url('image16.png');">
+        <h1 style="color:black;">Profile</h1>
+        <p id="user-name" style="text-align: center; color: black; font-size:40px;">Name: </p>
+        <br>
+        <div class="container">
+            <h3>Deadlines</h3>
+            <div id="deadlines-list"></div>
+            <h3>Add a New Deadline</h3>
+            <input type="text" id="new-deadline-title" placeholder="Deadline title">
+            <input type="date" id="new-deadline-date">
+            <button id="add-deadline">Add Deadline</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                alert('No user logged in. Redirecting to login page.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            document.getElementById('user-name').textContent = `Name: ${currentUser.name}`;
+
+            const deadlinesList = document.getElementById('deadlines-list');
+            const addDeadlineButton = document.getElementById('add-deadline');
+            const newDeadlineTitle = document.getElementById('new-deadline-title');
+            const newDeadlineDate = document.getElementById('new-deadline-date');
+
+            loadDeadlines();
+
+            addDeadlineButton.addEventListener('click', function() {
+                const title = newDeadlineTitle.value.trim();
+                const date = newDeadlineDate.value;
+
+                if (title && date) {
+                    addDeadline(title, date);
+                    newDeadlineTitle.value = '';
+                    newDeadlineDate.value = '';
+                } else {
+                    alert('Please enter a title and date for the deadline.');
+                }
+            });
+
+            function addDeadline(title, date) {
+                const deadlineElement = document.createElement('div');
+                deadlineElement.classList.add('deadline');
+                deadlineElement.innerHTML = `
+                    <span>${title} - ${date}</span>
+                    <button class="edit">Edit</button>
+                    <button class="delete">Delete</button>
+                `;
+
+                deadlinesList.appendChild(deadlineElement);
+
+                const editButton = deadlineElement.querySelector('.edit');
+                const deleteButton = deadlineElement.querySelector('.delete');
+
+                editButton.addEventListener('click', function() {
+                    const newTitle = prompt('Edit title:', title);
+                    const newDate = prompt('Edit date:', date);
+
+                    if (newTitle && newDate) {
+                        deadlineElement.querySelector('span').textContent = `${newTitle} - ${newDate}`;
+                        saveDeadlines();
+                    }
+                });
+
+                deleteButton.addEventListener('click', function() {
+                    const confirmation = confirm("Are you sure you want to delete this deadline?");
+                    if (confirmation) {
+                        deadlinesList.removeChild(deadlineElement);
+                        saveDeadlines();
+                    }
+                });
+
+                saveDeadlines();
+            }
+
+            function saveDeadlines() {
+                const deadlines = [];
+                const deadlineElements = deadlinesList.querySelectorAll('.deadline span');
+
+                deadlineElements.forEach(element => {
+                    const [title, date] = element.textContent.split(' - ');
+                    deadlines.push({ title, date });
+                });
+
+                localStorage.setItem(`${currentUser.email}-deadlines`, JSON.stringify(deadlines));
+            }
+
+            function loadDeadlines() {
+                const savedDeadlines = JSON.parse(localStorage.getItem(`${currentUser.email}-deadlines`)) || [];
+
+                savedDeadlines.forEach(deadline => {
+                    addDeadline(deadline.title, deadline.date);
+                });
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/js/shepherd.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tour = new Shepherd.Tour({
+                defaultStepOptions: {
+                    classes: 'shepherd-theme-dark',
+                    scrollTo: true,
+		    beforeShowPromise: function() {
+                return new Promise(resolve => {
+                    document.body.insertAdjacentHTML('beforeend', '<div class="shepherd-overlay"></div>');
+                    resolve();
+                });
+            },
+            when: {
+                show: function() {
+                    const target = document.querySelector(this.options.attachTo.element);
+                    target.classList.add('shepherd-target-highlight');
+                    document.querySelector('.shepherd-overlay').style.opacity = '1';
+                },
+                hide: function() {
+                    const target = document.querySelector(this.options.attachTo.element);
+                    if (target) {
+                        target.classList.remove('shepherd-target-highlight');
+                    }
+                    const overlay = document.querySelector('.shepherd-overlay');
+                    if (overlay) {
+                        overlay.remove();
+                    }
+                }
+            }
+        }
+    });
+             
+            tour.addStep({
+                id: 'step1',
+                text: 'Check out your profile :)!!!',
+                attachTo: {
+                    element: '#user-name',
+                    on: 'top'
+                },
+                buttons: [
+{
+                        text: 'Skip',
+                        action: function() {
+                tour.cancel();
+                document.querySelector('.shepherd-overlay').remove(); // Remove the overlay
+            },
+            classes: 'shepherd-button-secondary'
+        },
+                    {
+                        text: 'Previous',
+                        action: tour.back,
+                        secondary: true
+                    },
+                    {
+                        text: 'Next',
+                        action: tour.next
+                    }
+                ]
+            });
+
+            tour.addStep({
+                id: 'step2',
+                text: 'You can set deadlines to keep up with your amazing work! Be sure to click on the Add Deadline button after choosing the date to set the deadline. You can also click the Edit button to edit a deadline.',
+                attachTo: {
+                    element: '#new-deadline-title',
+                    on: 'top'
+                },
+                buttons: [
+{
+                        text: 'Skip',
+                        action: function() {
+                tour.cancel();
+                document.querySelector('.shepherd-overlay').remove(); // Remove the overlay
+            },
+            classes: 'shepherd-button-secondary'
+        },
+                    {
+                        text: 'Previous',
+                        action: tour.back,
+                        secondary: true
+                    },
+                    {
+                        text: 'Next',
+                        action: tour.next
+                    }
+                ]
+            });
+
+tour.addStep({
+        id: 'step3',
+        text: 'Now, Lets check out the Help section.',
+attachTo:
+ {
+            element: 'li:nth-child(6)',
+            on: 'top'
+        },
+        buttons: [
+{
+                        text: 'Skip',
+                        action: function() {
+                tour.cancel();
+                document.querySelector('.shepherd-overlay').remove(); // Remove the overlay
+            },
+            classes: 'shepherd-button-secondary'
+        },
+                    {
+                        text: 'Previous',
+                        action: tour.back,
+                        secondary: true
+                    },
+            {
+                text: 'Next',
+                action:function() {
+                    window.location.href = 'help.html';
+ }
+            }
+        ]
+    });
+
+            tour.start(); // Start the tour
+        });
+    </script>
+</body>
+</html>
+
